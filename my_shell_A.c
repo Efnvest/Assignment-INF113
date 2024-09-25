@@ -42,7 +42,7 @@ int main()
         }
         
         //create child
-        pid_t pid = fork();
+        int pid = fork();
 
         if (pid < 0) {
             // If fork fails
@@ -57,8 +57,7 @@ int main()
             exit(1);  //Exit child process
         } else {
             //Wait for the child process to finish
-            int status;
-            waitpid(pid, &status, 0);  // Wait for child complete
+            wait(NULL);  // Wait for child complete
         }
 
     }

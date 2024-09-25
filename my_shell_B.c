@@ -45,7 +45,7 @@ int main()
         }
         
         //create child
-        pid_t pid = fork();
+        int pid = fork();
 
         if (pid < 0) {
             // If fork fails
@@ -57,11 +57,10 @@ int main()
             if (execvp(args[0], args) < 0) {
                 perror("Error executing command");
             }
-            exit(1);  //Exit child process
+            exit(1);//Exit child process
         } else {
             //Wait for the child process to finish
-            int status;
-            waitpid(pid, &status, 0);  // Wait for child complete
+            wait(NULL);
         }
 
     }
